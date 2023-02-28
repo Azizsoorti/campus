@@ -24,7 +24,7 @@ function Singup() {
     
     <div className="container-fluid " style={{background:"#945894", minHeight:"100vh"}}>
     <div className="row">
-        <div className="m-auto col-3 bg-white rounded my-5 px-4"  style={{minHeight:"33rem"}}>
+        <div className="m-auto col-md-3 bg-white rounded my-5 px-4"  style={{minHeight:"33rem"}}>
               <div className="text-center mt-5 py-2" >
                         <img src="./images/campus.png" alt="" style={{width:"7rem"}}/>
                     </div>

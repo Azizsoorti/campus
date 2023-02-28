@@ -1,13 +1,13 @@
 
 import { Link, NavLink } from "react-router-dom";
 import React, { useState } from 'react'
-import "./Login.css"
+
 function Login() {
 
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [check, setCheck] = useState();
+    // const [check, setCheck] = useState();
     const [allUsers, setAllUsers] = useState([])
 
     const submitForm = (e) => {
@@ -28,7 +28,7 @@ function Login() {
     return (
         <div className="container-fluid " style={{background:"#945894", minHeight:"100vh"}}>
 <div className="row">
-    <div className="m-auto col-3 bg-white rounded my-5 px-4"  style={{minHeight:"28rem"}}>
+    <div className="m-auto col-md-3 bg-white rounded my-5 px-4"  style={{minHeight:"28rem"}}>
           <div className="text-center mt-5 py-2" >
                     <img src="./images/campus.png" alt="" style={{width:"7rem"}}/>
                 </div>
