@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 function Singup() {
 
   const [fullName, setFullName] = useState("");
@@ -63,7 +63,7 @@ function Singup() {
                         <label htmlFor="already"> I hereby agree all terms of services </label>
                     </div>
                     <button className="bg-primary text-white me-4 my-3 rounded border-0" type="submit">Sign up</button>
-                    <Link className="my-3 text-decoration-none" to="login">Already have an account ?</Link>
+                    <Link className="my-3 text-decoration-none" to="/login">Already have an account ?</Link>
     
                 </form>
                 </div>
