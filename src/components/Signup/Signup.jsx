@@ -63,7 +63,7 @@ function Singup() {
                         <label htmlFor="already"> I hereby agree all terms of services </label>
                     </div>
                     <button className="bg-primary text-white me-4 my-3 rounded border-0" type="submit">Sign up</button>
-                    <Link className="my-3 text-decoration-none" to="/login">Already have an account ?</Link>
+                    <Link className="my-3 text-decoration-none" to="/">Already have an account ?</Link>
     
                 </form>
                 </div>
