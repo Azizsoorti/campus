@@ -1,9 +1,10 @@
 
 import { Link } from "react-router-dom";
-import React from 'react'
+import React,{useState} from 'react'
 import { useFormik } from "formik";
 import { validationSchema } from "../../schemas";
-
+import { AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiOutlineEye } from "react-icons/ai";
 const initialValues = {
     email: "",
     password: "",
@@ -11,6 +12,12 @@ const initialValues = {
 }
 
 function Login() {
+
+    const [isVisible, setVisible] = useState(false);
+
+    const toggle = () => {
+      setVisible(!isVisible);
+    };
 
     const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: initialValues,
@@ -45,10 +52,13 @@ function Login() {
                             {errors.email && touched.email ? <p className="text-danger">{errors.email}</p> : null}
                         </div>
 
-                        <div>
+                        <div >
                             <label htmlFor="password"> Password</label><br />
-                            <input className="ps-2 w-100 " type="password" name="password" placeholder="Password" id="password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
+                            <input className="ps-2 w-100 "  type={!isVisible ? "password" : "text"} name="password" placeholder="Password" id="password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
                             {errors.password && touched.password ? <p className="text-danger">{errors.password}</p> : null}
+                            <span className="icon" onClick={toggle}>
+        {isVisible ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
+      </span>
                         </div>
 
                         <div className="my-2">
