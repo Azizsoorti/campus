@@ -1,25 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Link } from "react-router-dom";
+import { useFormik } from "formik";
+import { validationSchema  } from "../../schemas";
+const initialValues = {
+    fullName:"",
+    email:"",
+    password:"",
+    confirm_password:""
+}
+
+
 function Singup() {
-
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [cPassword, setCPassword] = useState("");
-  const [allUsers, setAllUsers] = useState([])
-
-  const submitForm = (e) => {
-      e.preventDefault();
-
-      const newUser = {fullName:fullName,  email:email, password:password,cPassword:cPassword };
-      setAllUsers([...allUsers, newUser])
-      console.log(allUsers)
-  
-      setFullName("")
-      setEmail("")
-      setPassword("")
-      setCPassword("")
-  }
+    const {values,errors,touched, handleBlur,handleChange,handleSubmit} =  useFormik({
+        initialValues:initialValues,
+        validationSchema:validationSchema ,
+        onSubmit:(values) => {
+          
+        }
+    })
+        console.log("🚀 ~ file: Login.jsx:20 ~ Login ~ values:", values)
+ 
   return (
     
     <div className="container-fluid " style={{background:"#945894", minHeight:"100vh"}}>
@@ -28,16 +28,18 @@ function Singup() {
               <div className="text-center mt-5 py-2" >
                         <img src="./images/campus.png" alt="" style={{width:"7rem"}}/>
                     </div>
-                <form action="" onSubmit={submitForm}>
+                <form action="" onSubmit={handleSubmit}>
                 <div className="my-3 rounded">
                         <label htmlFor="fullName"> Full Name</label><br />
-                        <input className="ps-2 w-100 " type="text" name="fullName" placeholder="Enter Your Name" id="fullName" value={fullName} onChange={(e) => { setFullName(e.target.value) }} />
+                        <input className="ps-2 w-100 " type="text" name="fullName" placeholder="Enter Your Name" id="fullName" value={values.fullName} onChange={handleChange}  onBlur={handleBlur} />
+                        {errors.fullName && touched.fullName ? <p className="text-danger">{errors.fullName}</p> :null}
                     </div>
                   
     
                     <div className="my-3 rounded">
                         <label htmlFor="email"> Email address</label><br />
-                        <input className="ps-2 w-100 " type="text" name="email" placeholder="Enter Email Address" id="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                        <input className="ps-2 w-100 " type="text" name="email" placeholder="Enter Email Address" id="email" value={values.email} onChange={handleChange}  onBlur={handleBlur}/>
+                        {errors.email && touched.email ? <p className="text-danger">{errors.email}</p> :null}
                     </div>
 
                     <div className="my-2">
@@ -50,12 +52,14 @@ function Singup() {
     
                     <div>
                         <label htmlFor="password"> Password</label><br />
-                        <input className="ps-2 w-100 " type="password" name="password" placeholder="Password" id="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                        <input className="ps-2 w-100 " type="password" name="password" placeholder="Password" id="password" value={values.password} onChange={handleChange}  onBlur={handleBlur}  />
+                        {errors.password && touched.password ? <p className="text-danger">{errors.password}</p> :null}
                     </div>
 
                     <div  className="my-2">
-                        <label htmlFor="confirm password">Confirm Password</label><br />
-                        <input className="ps-2 w-100 " type="password" name="confirm password" placeholder="confirm Password" id="confirm Password" value={cPassword} onChange={(e) => { setCPassword(e.target.value) }} />
+                        <label htmlFor="confirm_password">Confirm Password</label><br />
+                        <input className="ps-2 w-100 " type="password" name="confirm_password" placeholder="confirm Password" id="confirm_Password" value={values.confirm_password} onChange={handleChange}  onBlur={handleBlur}  />
+                        {errors.confirm_password && touched.confirm_password ? <p className="text-danger">{errors.confirm_password}</p> :null}
                     </div>
     
                     <div className="my-2">

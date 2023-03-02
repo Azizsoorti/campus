@@ -1,26 +1,30 @@
 
 import { Link} from "react-router-dom";
-import React, { useState } from 'react'
+import React from 'react'
+import { useFormik } from "formik";
+import { validationSchema  } from "../../schemas";
+
+const initialValues = {
+    email:"",
+    password:"",
+
+}
 
 function Login() {
 
-
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    // const [check, setCheck] = useState();
-    const [allUsers, setAllUsers] = useState([])
-
-    const submitForm = (e) => {
-        e.preventDefault();
-
-        const newUser = { email:email, password:password };
-        setAllUsers([...allUsers, newUser])
-        console.log(allUsers)
-    
-        setEmail("")
-        setPassword("")
-    
+const {values,errors,touched, handleBlur,handleChange,handleSubmit} =  useFormik({
+    initialValues:initialValues,
+    validationSchema:validationSchema ,
+    onSubmit:(values) => {
+      
     }
+})
+    console.log("🚀 ~ file: Login.jsx:20 ~ Login ~ values:", values)
+  
+  
+
+   
+
 
 
 
@@ -32,17 +36,19 @@ function Login() {
           <div className="text-center mt-5 py-2" >
                     <img src="./images/campus.png" alt="" style={{width:"7rem"}}/>
                 </div>
-            <form action="" onSubmit={submitForm}>
+            <form action="" onSubmit={handleSubmit}>
               
 
                 <div className="my-3 rounded">
                     <label htmlFor="email"> Email</label><br />
-                    <input className="ps-2 w-100 " type="text" name="email" placeholder="Enter email" id="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                    <input className="ps-2 w-100 " type="text" name="email" placeholder="Enter email" id="email" value={values.email} onChange={handleChange}  onBlur={handleBlur}/>
+                {errors.email && touched.email ? <p className="text-danger">{errors.email}</p> :null}
                 </div>
 
                 <div>
                     <label htmlFor="password"> Password</label><br />
-                    <input className="ps-2 w-100 " type="password" name="password" placeholder="Password" id="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                    <input className="ps-2 w-100 " type="password" name="password" placeholder="Password" id="password" value={values.password} onChange={handleChange}  onBlur={handleBlur} />
+                    {errors.password && touched.password ? <p className="text-danger">{errors.password}</p> :null}
                 </div>
 
                 <div className="my-2">
@@ -50,7 +56,7 @@ function Login() {
                     <label htmlFor="remember"> Remember me</label>
                 </div>
                 <button className="bg-primary text-white me-4 my-3 rounded border-0" type="submit">Login</button>
-                <Link className="my-3 text-decoration-none" to="signup">Don't have an account ?</Link>
+                <Link className="my-3 text-decoration-none" to="/signup">Don't have an account ?</Link>
 
             </form>
             </div>
